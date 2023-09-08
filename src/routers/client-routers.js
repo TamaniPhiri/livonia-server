@@ -1,8 +1,8 @@
-const ClientController = require('../controller/controler');
+const ClientController = require('../controller/controller');
 const router = require('express').Router();
 
 router.post('/',ClientController.createClient);
 router.get('/',ClientController.getClients);
-router.put('/:clientId',ClientController.updateClient);
+router.put('/:id',ClientController.updateClient);
 
 module.exports=router;

@@ -12,10 +12,10 @@ const ClientService = () => {
     const client = await clientRepository.createClient(data);
     return client;
   };
-  const updateClient = async (data)=> {
-    const client = await clientRepository.updateClient(data);
-    return client;
-  }
+  const updateClientById=async(id,data)=>{
+    const updatedClient=await clientRepository.updateClient(id,data);
+    return updatedClient;
+}
   const deleteClient = async (data)=> {
     const client = await clientRepository.deleteClient(data);
     return client;
@@ -23,7 +23,7 @@ const ClientService = () => {
   return {
     getAllClients,
     createClient,
-    updateClient,
+    updateClientById,
     deleteClient
   };
 };

@@ -21,24 +21,14 @@ const ClientController = () => {
     }
   };
   const updateClient = async (req, res) => {
-    const clientId = req.params.clientId;
-    const updatedClientData = req.body;
     try {
-      const updatedClient = await clientService.updateClient(
-        clientId,
-        updatedClientData
-      );
-      if (!updatedClient) {
-        return res.status(404).json({ error: "Client not found" });
-      }
-
-      return res.json({
-        message: "Client updated successfully",
-        updatedClient,
-      });
+      const { id } = req.params;
+      const { name } = req.body;
+      const updatedClient = await clientService.updateClientById(id, name);
+      res.status(200).json(updatedClient);
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Server error" });
+      console.log(error);
+      res.status(400).json(error);
     }
   };
   return {
