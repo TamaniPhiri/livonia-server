@@ -31,10 +31,23 @@ const ClientController = () => {
       res.status(400).json(error);
     }
   };
+
+  const deleteClientById = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await clientService.deleteClient(id);
+      res.status(200).json("Client deleted");
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  };
+
   return {
     getClients,
     createClient,
-    updateClient
+    updateClient,
+    deleteClientById
   };
 };
 

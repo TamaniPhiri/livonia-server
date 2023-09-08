@@ -16,8 +16,8 @@ const ClientService = () => {
     const updatedClient=await clientRepository.updateClient(id,data);
     return updatedClient;
 }
-  const deleteClient = async (data)=> {
-    const client = await clientRepository.deleteClient(data);
+  const deleteClient = async (id,data)=> {
+    const client = await clientRepository.deleteClientById(id,data);
     return client;
   }
   return {

@@ -33,7 +33,7 @@ const ClientRepository = () => {
     }
 
     const deleteClientById = async (id) => {
-      return prisma.book.delete({
+      return prisma.client.delete({
         where: {
           id:parseInt(id)
         },
