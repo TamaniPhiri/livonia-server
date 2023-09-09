@@ -1,3 +1,4 @@
+const adminService = require("../service/admin-service");
 const AdminService = require("../service/admin-service");
 
 const adminController = () => {
@@ -43,7 +44,7 @@ const adminController = () => {
   const deleteAdmin = async (req, res) => {
     try {
       const { id } = req.params;
-      await clientService.deleteClient(id);
+      await AdminService.deleteAdmin(id);
       res.status(200).json("Client deleted");
     } catch (error) {
       console.log(error);
