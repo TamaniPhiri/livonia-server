@@ -21,6 +21,7 @@ const adminController = () => {
   };
   const getAdminById = async (req, res) => {
     try {
+      const { id } = req.params;
       const admin = await AdminService.getAdminById(id);
       res.status(200).json(admin);
     } catch (error) {
