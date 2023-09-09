@@ -1,4 +1,3 @@
-const adminService = require("../service/admin-service");
 const AdminService = require("../service/admin-service");
 
 const adminController = () => {

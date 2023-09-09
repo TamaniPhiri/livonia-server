@@ -12,14 +12,14 @@ const UserService =()=>{
         }
         return user;
     }
-    const getAdminsById=async(id)=>{
+    const getUsers=async(id)=>{
         const user = await UserRepository.getUserBYId(id);
         if(!user){
             throw new Error("admin not found");
         }
         return user;
     }
-    const updateAdmin=async(id,data)=>{
+    const updateUser=async(id,data)=>{
         const user = await UserRepository.updateUser(id,data);
         return user;
     }
