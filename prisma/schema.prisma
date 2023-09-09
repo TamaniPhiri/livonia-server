@@ -51,10 +51,10 @@ model Inventory {
   transaction Transactions @relation(fields: [transactionId], references: [id])
   transactionId Int
   cupdatedAt DateTime @updatedAt
-  name String
-  brand String
-  size String
-  quantity String
-  price String
+  name String?
+  brand String?
+  size String?
+  quantity String?
+  price String?
 
 }
