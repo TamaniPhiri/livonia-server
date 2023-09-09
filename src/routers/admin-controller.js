@@ -1,1 +1,0 @@
-const AdminService = require('../service/admin-service');
