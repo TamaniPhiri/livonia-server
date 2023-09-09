@@ -22,4 +22,5 @@ async function adminLogin(req,res){
     }
 }
 
+
 module.exports = {adminLogin};
