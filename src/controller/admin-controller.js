@@ -33,7 +33,7 @@ const adminController = () => {
     try {
       const { id } = req.params;
       const { name } = req.body;
-      const updatedAdmin = await AdminService.updateClientById(id, name);
+      const updatedAdmin = await AdminService.updateAdmin(id, name);
       res.status(200).json(updatedAdmin);
     } catch (error) {
       console.log(error);
