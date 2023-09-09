@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const clientRouter = require('./src/routers/client-routers');
 const adminRouter = require('./src/routers/admin-routes');
 const userRouter = require('./src/routers/user-routes');
+const loginRouter = require('./src/routers/login-routes');
 
 app.use(bodyParser.json());
 app.get("/",(req,res)=>{
@@ -12,6 +13,7 @@ app.get("/",(req,res)=>{
 app.use('/clients',clientRouter);
 app.use('/admin',adminRouter);
 app.use('/user',userRouter);
+app.use('/login',loginRouter);
 
 app.listen(8000, ()=>{
     console.log("server is listening on port 8000");
