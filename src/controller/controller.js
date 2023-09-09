@@ -1,15 +1,28 @@
 const clientService = require("../service/client-service");
 
 const ClientController = () => {
-  const getClients = async (req, res) => {
-    try {
-      const clients = await clientService.getAllClients();
-      res.status(200).json(clients);
-    } catch (error) {
-      console.log(error);
-      res.status(400).json(error);
-    }
-  };
+    const getClients = async (req, res) => {
+      try {
+        const clients = await clientService.getAllClients();
+        res.status(200).json(clients);
+      } catch (error) {
+        console.log(error);
+        res.status(400).json(error);
+      }
+    };
+    const getClientById = async (req, res) => {
+      try {
+        const { id } = req.params;
+        const client = await clientService.getClientsById(id);
+        if (!client) {
+          return res.status(400).json("Book not found");
+        }
+        res.status(200).json(client);
+      } catch (error) {
+        console.log(error);
+        res.status(400).json(error.message);
+      }
+    };
 
   const createClient = async (req, res) => {
     try {
@@ -47,7 +60,8 @@ const ClientController = () => {
     getClients,
     createClient,
     updateClient,
-    deleteClientById
+    deleteClientById,
+    getClientById
   };
 };
 

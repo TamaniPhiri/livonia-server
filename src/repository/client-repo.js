@@ -43,7 +43,8 @@ const ClientRepository = () => {
       findAllClients,
       deleteClientById,
       createClient,
-      updateClient
+      updateClient,
+      findClientByID
     };
   };
 

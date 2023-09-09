@@ -8,6 +8,13 @@ const ClientService = () => {
     }
     return clients;
   };
+  const getClientsById = async (id) => {
+    const client = await clientRepository.findClientByID(id);
+    if (!client) {
+      throw new Error("client not found");
+    }
+    return client;
+  };
   const createClient = async (data) => {
     const client = await clientRepository.createClient(data);
     return client;
@@ -22,6 +29,7 @@ const ClientService = () => {
   }
   return {
     getAllClients,
+    getClientsById,
     createClient,
     updateClientById,
     deleteClient
