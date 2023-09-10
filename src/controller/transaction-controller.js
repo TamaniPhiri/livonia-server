@@ -1,15 +1,15 @@
 const TransactionService = require('../service/transaction-service');
 
 const TransactionController=()=>{
-    const createTransaction = async(req,res)=>{
+    const createTransaction = async (req, res) => {
         try {
-            const transaction = await TransactionController.createTransaction(req.body);
-            res.status(200).json(transaction);
-          } catch (error) {
-            console.log(error);
-            res.status(500).json(error);
-          }
-    }
+          const transaction = await TransactionService.createTransaction(req.body); // Corrected from TransactionController to TransactionService
+          res.status(200).json(transaction);
+        } catch (error) {
+          console.log(error);
+          res.status(500).json(error);
+        }
+      }
     const getTransaction = async(req,res)=>{
         try {
             const transaction = await TransactionService.getTransaction();

@@ -39,7 +39,9 @@ model Transactions {
   client Client ? @relation(fields: [clientId],references: [id])
   clientId Int ?
   name String ?
+  brand String ?
   quantity String ?
+  amount String ?
 }
 
 model Inventory {

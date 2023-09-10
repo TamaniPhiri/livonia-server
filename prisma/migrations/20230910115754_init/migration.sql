@@ -36,7 +36,9 @@ CREATE TABLE "Transactions" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "clientId" INTEGER,
     "name" TEXT,
+    "brand" TEXT,
     "quantity" TEXT,
+    "amount" TEXT,
 
     CONSTRAINT "Transactions_pkey" PRIMARY KEY ("id")
 );
