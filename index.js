@@ -1,4 +1,5 @@
 const express = require("express");
+const cors=require('cors');
 const bodyParser = require("body-parser");
 const clientRouter = require("./src/routers/client-routers");
 const adminRouter = require("./src/routers/admin-routes");
@@ -9,6 +10,7 @@ const transactionRouter = require("./src/routers/transaction-routes");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors())
 app.get("/", (req, res) => {
   res.send("The server is on");
 });
@@ -19,7 +21,7 @@ app.use("/login", loginRouter);
 app.use("/inventory", inventoryRouter);
 app.use("/transaction", transactionRouter);
 
-const port = process.env.PORT;
+const port = process.env.PORT||8000;
 
 app.listen(port, () => {
   console.log(`server is listening at http://localhost:${port}`);
