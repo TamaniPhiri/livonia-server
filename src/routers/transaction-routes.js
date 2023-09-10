@@ -3,8 +3,8 @@ const TransactionController = require('../controller/transaction-controller');
 
 router.post('/',TransactionController.createTransaction);
 router.get('/',TransactionController.getTransaction);
-router.get('/client',TransactionController.getTransactionByClient);
-router.put('/',TransactionController.updateTransaction);
-router.delete('/',TransactionController.deleteTransaction);
+router.get('/client',TransactionController.getTransactionByClientById);
+router.put('/:id',TransactionController.updateTransaction);
+router.delete('/:id',TransactionController.deleteTransaction);
 
 module.exports= router;

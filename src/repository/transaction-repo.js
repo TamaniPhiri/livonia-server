@@ -10,10 +10,10 @@ const TransactionRepository=()=>{
     const getTransaction = async()=>{
         return Prisma.transactions.findMany();
     };
-    const getTransactionByClient = async(client)=>{
-        return Prisma.transactions.findUnique({
+    const getTransactionByClientId = async(clientId)=>{
+        return Prisma.transactions.findMany({
             where:{
-                data,
+                clientId,
             }
         })
     }
@@ -32,7 +32,7 @@ const TransactionRepository=()=>{
             }
         })
     }
-    return{createTransaction, deleteTransaction,getTransaction,getTransactionByClient,updateTransaction}
+    return{createTransaction, deleteTransaction,getTransaction,getTransactionByClientId,updateTransaction}
 }
 
 module.exports = TransactionRepository();
