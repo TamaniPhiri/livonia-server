@@ -21,7 +21,7 @@ const TransactionController=()=>{
     }
     const getTransactionByClientById = async(req,res)=>{
         try {
-            const { clientId } = req.body;
+            const { clientId } = req.params;
             const transaction = await TransactionService.getTransactionByClient(clientId);
             res.status(200).json(transaction);
           } catch (error) {
