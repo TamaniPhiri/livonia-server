@@ -42,8 +42,8 @@ const InventoryController = () => {
     const updateInventory = async (req, res) => {
         try {
           const { id } = req.params;
-          const { name } = req.body;
-          const updatedInventory = await InventoryService.updateInventory(id,name);
+          const data = req.body;
+          const updatedInventory = await InventoryService.updateInventory(id,data);
           res.status(200).json(updatedInventory);
         } catch (error) {
           console.log(error);

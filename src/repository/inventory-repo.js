@@ -20,7 +20,7 @@ const InventoryRepository = () => {
   const updateInventory = async (id, data) => {
     return Prisma.inventory.update({
       where: { id: parseInt(id) },
-      data,
+      data
     });
   };
   const deleteInventory = async (id) => {
