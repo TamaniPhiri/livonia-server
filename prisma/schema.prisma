@@ -9,8 +9,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-
 model Admin {
   id Int @id @default(autoincrement())
   name String
@@ -42,15 +40,12 @@ model Transactions {
   clientId Int ?
   name String ?
   quantity String ?
-  inventory Inventory[]
 }
 
 model Inventory {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
-  transaction Transactions @relation(fields: [transactionId], references: [id])
-  transactionId Int
-  cupdatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt
   name String?
   brand String?
   size String?

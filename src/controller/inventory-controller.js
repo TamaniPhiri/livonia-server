@@ -3,7 +3,7 @@ const InventoryService = require('../service/inventory-service');
 const InventoryController = () => {
     const createInventory = async(req,res)=>{
         try {
-            const inventory = await InventoryService.createInventory();
+            const inventory = await InventoryService.createInventory(req.body);
             res.status(200).json(inventory);
         } catch (error) {
             console.log(error);

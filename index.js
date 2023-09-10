@@ -1,11 +1,11 @@
 const express = require('express');
-const app = express();
 const bodyParser = require("body-parser");
 const clientRouter = require('./src/routers/client-routers');
 const adminRouter = require('./src/routers/admin-routes');
 const userRouter = require('./src/routers/user-routes');
 const loginRouter = require('./src/routers/login-routes');
 const inventoryRouter = require('./src/routers/inventory-router');
+const app = express();
 
 app.use(bodyParser.json());
 app.get("/",(req,res)=>{
