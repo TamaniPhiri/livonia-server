@@ -12,7 +12,7 @@ const InventoryController = () => {
     }
     const getInventory = async(req,res)=>{
         try {
-            const inventory = await InventoryService.getInventory();
+            const inventory = await InventoryService.getAllInventory();
             res.status(200).json(inventory);
         } catch (error) {
             console.log(error);
