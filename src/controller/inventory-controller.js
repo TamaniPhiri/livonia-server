@@ -13,6 +13,9 @@ const InventoryController = () => {
     const getInventory = async(req,res)=>{
         try {
             const inventory = await InventoryService.getAllInventory();
+            if(inventory.length<=0){
+                return res.status(400).json("No inventories found");
+            }
             res.status(200).json(inventory);
         } catch (error) {
             console.log(error);

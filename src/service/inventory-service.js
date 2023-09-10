@@ -7,9 +7,6 @@ const InventoryService = () => {
     }
     const getAllInventory = async() => {
         const inventory = await InventoryRepository.getInventory();
-        if(inventory<=0){
-            throw new Error("no goods found");
-        }
         return inventory;
     }
     const getInventoryByName = async(name) => {
