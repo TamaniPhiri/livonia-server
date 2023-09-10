@@ -30,4 +30,4 @@ const InventoryService = () => {
     return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventory}
 }
 
-module.exports = InventoryRepository();
+module.exports = InventoryService();
