@@ -26,9 +26,7 @@ const ClientRepository = () => {
         where: {
           id: parseInt(id),
         },
-        data: {
-          name: data,
-        },
+        data
       });
     }
 
