@@ -14,9 +14,6 @@ const TransactionService =()=>{
     }
     const getTransactionByClient = async(clientId)=>{
         const transaction = await TransactionRepository.getTransactionByClientId(clientId);
-        if(!transaction){
-            throw new Error("no transaction by that client");
-        }
         return transaction;
     }
     const updateTransaction = async(id,data)=>{

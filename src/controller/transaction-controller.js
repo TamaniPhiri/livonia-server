@@ -21,8 +21,14 @@ const TransactionController=()=>{
     }
     const getTransactionByClientById = async(req,res)=>{
         try {
-            const { clientId } = req.params;
-            const transaction = await TransactionService.getTransactionByClient(clientId);
+            const { id } = req.params;
+            if (!id) {
+              return res.status(400).json("ID not found");
+            }
+            const transaction = await TransactionService.getTransactionByClient(id);
+            if (transaction.length===0) {
+              return res.status(404).json("No transactions found");
+            }
             res.status(200).json(transaction);
           } catch (error) {
             console.log(error);

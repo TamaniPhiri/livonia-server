@@ -13,8 +13,8 @@ const TransactionRepository = () => {
   const getTransactionByClientId = async (clientId) => {
     return Prisma.transactions.findMany({
       where: {
-        clientId,
-      },
+        clientId:parseInt(clientId)
+      }
     });
   };
   const updateTransaction = async (id, data) => {

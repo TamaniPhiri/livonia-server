@@ -13,9 +13,12 @@ const ClientController = () => {
   const getClientById = async (req, res) => {
     try {
       const { id } = req.params;
+      if(!id){
+        return res.status(400).json("ID not found");
+      }
       const client = await clientService.getClientsById(id);
       if (!client) {
-        return res.status(400).json("Book not found");
+        return res.status(400).json("Client not found");
       }
       res.status(200).json(client);
     } catch (error) {
