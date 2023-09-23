@@ -4,7 +4,13 @@ const Prisma = new PrismaClient();
 const TransactionRepository = () => {
   const createTransaction = async (data) => {
     return Prisma.transactions.create({
-      data,
+      data:{
+        clientId: data.clientId,
+        name:data.name,
+        brand:data.brand,
+        quantity:parseInt(data.quantity),
+        amount:data.amount,
+      }
     });
   };
   const getTransaction = async () => {

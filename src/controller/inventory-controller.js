@@ -24,7 +24,7 @@ const InventoryController = () => {
     }
     const getInventoryByName = async(req,res)=>{
         try {
-            const{name} = req.body;
+            const{name} = req.params;
             const inventory = await InventoryService.getInventoryByName(name);
             res.status(200).json(inventory);
         }catch (error) {
@@ -50,7 +50,7 @@ const InventoryController = () => {
           res.status(200).json(updatedInventory);
         } catch (error) {
           console.log(error);
-          res.status(400).json(error);
+          res.status(400).json(error.message);
         }
       };
     return{getInventory,getInventoryByName,createInventory,deleteInventory,updateInventory}
