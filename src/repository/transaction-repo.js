@@ -6,7 +6,7 @@ const TransactionRepository = () => {
     return Prisma.transactions.create({
       data:{
         clientId: data.clientId,
-        name:data.name,
+        product:data.product,
         brand:data.brand,
         quantity:parseInt(data.quantity),
         amount:data.amount,

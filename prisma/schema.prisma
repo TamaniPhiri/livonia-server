@@ -38,7 +38,7 @@ model Transactions {
   createdAt DateTime @default(now())
   client Client ? @relation(fields: [clientId],references: [id])
   clientId Int ?
-  name String ?
+  product String ?
   brand String ?
   quantity Int ?
   amount String ?
