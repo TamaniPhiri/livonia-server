@@ -28,7 +28,11 @@ const TransactionRepository = () => {
   const createTransaction = async (transactionsData) => {
     const createdTransactions = [];
     const batchId = generateBatchId();
-
+  
+    if (!Array.isArray(transactionsData)) {
+      throw new Error("transactionsData is not an array");
+    }
+  
     for (const data of transactionsData) {
       const createdTransaction = await Prisma.transactions.create({
         data: {
@@ -38,15 +42,16 @@ const TransactionRepository = () => {
           quantity: parseInt(data.quantity),
           amount: data.amount,
           batchId,
-          total:data.total,
+          total: data.total,
         },
       });
-
+  
       createdTransactions.push(createdTransaction);
     }
-
+  
     return createdTransactions;
   };
+  
   const getTransactionsByBatchId = async (batchId) => {
     return Prisma.transactions.findMany({
       where: {
