@@ -46,9 +46,14 @@ const TransactionRepository = () => {
 
     return createdTransactions;
   };
-  const getTransaction = async () => {
-    return Prisma.transactions.findMany();
+  const getTransactionsByBatchId = async (batchId) => {
+    return Prisma.transactions.findMany({
+      where: {
+        batchId: batchId,
+      },
+    });
   };
+
   const getTransactionByClientId = async (clientId) => {
     return Prisma.transactions.findMany({
       where: {
@@ -74,7 +79,7 @@ const TransactionRepository = () => {
   return {
     createTransaction,
     deleteTransaction,
-    getTransaction,
+    getTransactionsByBatchId,
     getTransactionByClientId,
     updateTransaction,
   };

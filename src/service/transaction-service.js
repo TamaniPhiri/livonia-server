@@ -5,8 +5,8 @@ const TransactionService =()=>{
         const transaction = await TransactionRepository.createTransaction(data);
         return transaction;
     }
-    const getTransaction = async()=>{
-        const transaction = await TransactionRepository.getTransaction();
+    const getTransaction = async(batchId)=>{
+        const transaction = await TransactionRepository.getTransactionsByBatchId(batchId);
         if(transaction<=0){
             throw new Error("no transaction found");
         }

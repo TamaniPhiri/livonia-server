@@ -12,7 +12,14 @@ const TransactionController=()=>{
       }
     const getTransaction = async(req,res)=>{
         try {
-            const transaction = await TransactionService.getTransaction();
+          const batchId = req.body.batchId;
+          if(!batchId){
+            return res.status(400).json("batchId not found");
+          }
+          const transaction = await TransactionService.getTransaction(batchId);
+            if (transaction.length===0) {
+              return res.status(404).json("No transactions found");
+            }
             res.status(200).json(transaction);
           } catch (error) {
             console.log(error);
