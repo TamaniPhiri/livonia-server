@@ -42,6 +42,7 @@ model Transactions {
   brand String ?
   quantity Int ?
   amount String ?
+  batchId String?
 }
 
 model Inventory {
