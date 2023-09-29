@@ -2,16 +2,24 @@ const { PrismaClient } = require("@prisma/client");
 const Prisma = new PrismaClient();
 
 const TransactionRepository = () => {
-  const createTransaction = async (data) => {
-    return Prisma.transactions.create({
-      data:{
-        clientId: data.clientId,
-        product:data.product,
-        brand:data.brand,
-        quantity:parseInt(data.quantity),
-        amount:data.amount,
-      }
-    });
+  const createTransaction = async (transactionsData) => {
+    const createdTransactions = [];
+
+    for (const data of transactionsData) {
+      const createdTransaction = await Prisma.transactions.create({
+        data: {
+          clientId: data.clientId,
+          product: data.product,
+          brand: data.brand,
+          quantity: parseInt(data.quantity),
+          amount: data.amount,
+        },
+      });
+
+      createdTransactions.push(createdTransaction);
+    }
+
+    return createdTransactions;
   };
   const getTransaction = async () => {
     return Prisma.transactions.findMany();
