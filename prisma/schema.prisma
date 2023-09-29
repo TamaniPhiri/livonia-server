@@ -43,6 +43,7 @@ model Transactions {
   quantity Int ?
   amount String ?
   batchId String?
+  total String?
 }
 
 model Inventory {

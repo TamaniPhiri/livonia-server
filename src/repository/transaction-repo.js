@@ -38,6 +38,7 @@ const TransactionRepository = () => {
           quantity: parseInt(data.quantity),
           amount: data.amount,
           batchId,
+          total:data.total,
         },
       });
 
