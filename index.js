@@ -20,6 +20,7 @@ app.use("/user", userRouter);
 app.use("/login", loginRouter);
 app.use("/inventory", inventoryRouter);
 app.use("/transaction", transactionRouter);
+app.use("/",require("./src/routers/inventory-update"));
 
 const port = process.env.PORT||8000;
 

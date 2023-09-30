@@ -2,7 +2,8 @@ const { PrismaClient } = require("@prisma/client");
 const Prisma = new PrismaClient();
 
 function generateRandomString(length) {
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let randomString = "";
 
   for (let i = 0; i < length; i++) {
@@ -28,11 +29,11 @@ const TransactionRepository = () => {
   const createTransaction = async (transactionsData) => {
     const createdTransactions = [];
     const batchId = generateBatchId();
-  
+
     if (!Array.isArray(transactionsData)) {
       throw new Error("transactionsData is not an array");
     }
-  
+
     for (const data of transactionsData) {
       const createdTransaction = await Prisma.transactions.create({
         data: {
@@ -45,13 +46,13 @@ const TransactionRepository = () => {
           total: data.total,
         },
       });
-  
+
       createdTransactions.push(createdTransaction);
     }
-  
+
     return createdTransactions;
   };
-  
+
   const getTransactionsByBatchId = async (batchId) => {
     return Prisma.transactions.findMany({
       where: {
@@ -63,8 +64,8 @@ const TransactionRepository = () => {
   const getTransactionByClientId = async (clientId) => {
     return Prisma.transactions.findMany({
       where: {
-        clientId:parseInt(clientId)
-      }
+        clientId: parseInt(clientId),
+      },
     });
   };
   const updateTransaction = async (id, data) => {

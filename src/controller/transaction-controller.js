@@ -44,6 +44,7 @@ const TransactionController = () => {
       res.status(200).json(error);
     }
   };
+  
   const updateTransaction = async (req, res) => {
     try {
       const { id } = req.params;

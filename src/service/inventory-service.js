@@ -24,6 +24,7 @@ const InventoryService = () => {
         const inventory = await InventoryRepository.updateInventory(id,data);
         return inventory;
     }
+
     return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventory}
 }
 
