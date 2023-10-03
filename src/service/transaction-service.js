@@ -20,6 +20,25 @@ const TransactionService = () => {
     }
     return transaction;
   };
+
+  const getTransactions = async () => {
+    const transaction = await TransactionRepository.getTransactions();
+    if (transaction <= 0) {
+      throw new Error("no transaction found");
+    }
+    return transaction;
+  };
+
+  const getTransactionByPayment = async (payment) => {
+    const transaction = await TransactionRepository.getTransactionsByPayment(
+      payment
+    );
+    if (transaction <= 0) {
+      throw new Error("no transaction found");
+    }
+    return transaction;
+  };
+
   const getTransactionByClient = async (clientId) => {
     const transaction = await TransactionRepository.getTransactionByClientId(
       clientId
@@ -36,7 +55,9 @@ const TransactionService = () => {
   };
   return {
     createTransaction,
+    getTransactions,
     getTransaction,
+    getTransactionByPayment,
     getTransactionByClient,
     updateTransaction,
     deleteTransaction,
