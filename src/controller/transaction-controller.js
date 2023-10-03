@@ -28,6 +28,37 @@ const TransactionController = () => {
       res.status(200).json(error);
     }
   };
+
+  const getTransactionByPayment = async (req, res) => {
+    try {
+      const payment = req.body.payment;
+      if (!payment) {
+        return res.status(400).json("batchId not found");
+      }
+      const transaction = await TransactionService.getTransactionByPayment(payment);
+      if (transaction.length === 0) {
+        return res.status(404).json("No transactions found");
+      }
+      res.status(200).json(transaction);
+    } catch (error) {
+      console.log(error);
+      res.status(200).json(error);
+    }
+  };
+
+  const getTransactions = async (req, res) => {
+    try {
+      const transaction = await TransactionService.getTransactions;
+      if (transaction.length === 0) {
+        return res.status(404).json("No transactions found");
+      }
+      res.status(200).json(transaction);
+    } catch (error) {
+      console.log(error);
+      res.status(200).json(error);
+    }
+  };
+
   const getTransactionByClientById = async (req, res) => {
     try {
       const { id } = req.params;
@@ -71,8 +102,10 @@ const TransactionController = () => {
   };
   return {
     createTransaction,
+    getTransactions,
     getTransaction,
     getTransactionByClientById,
+    getTransactionByPayment,
     updateTransaction,
     deleteTransaction,
   };
