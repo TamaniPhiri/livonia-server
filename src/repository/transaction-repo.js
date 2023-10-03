@@ -68,6 +68,19 @@ const TransactionRepository = () => {
       },
     });
   };
+
+  const getTransactionsByPayment = async (payment) => {
+    return Prisma.transactions.findMany({
+      where: {
+        payment: credit,
+      },
+    });
+  };
+
+  const getTransactions = async()=>{
+    return Prisma.transactions.findMany();
+  };
+
   const updateTransaction = async (id, data) => {
     return Prisma.transactions.update({
       where: {
@@ -86,8 +99,10 @@ const TransactionRepository = () => {
   return {
     createTransaction,
     deleteTransaction,
+    getTransactions,
     getTransactionsByBatchId,
     getTransactionByClientId,
+    getTransactionsByPayment,
     updateTransaction,
   };
 };
