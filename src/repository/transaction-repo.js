@@ -72,7 +72,7 @@ const TransactionRepository = () => {
   const getTransactionsByPayment = async (payment) => {
     return Prisma.transactions.findMany({
       where: {
-        payment: credit,
+        payment: payment,
       },
     });
   };
