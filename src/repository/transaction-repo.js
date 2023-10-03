@@ -74,10 +74,18 @@ const TransactionRepository = () => {
       where: {
         payment: payment,
       },
+      include: {
+        client: {
+          select: {
+            name: true,
+            contact: true,
+          },
+        },
+      },
     });
   };
 
-  const getTransactions = async()=>{
+  const getTransactions = async () => {
     return Prisma.transactions.findMany();
   };
 
