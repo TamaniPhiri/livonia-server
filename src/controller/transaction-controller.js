@@ -31,9 +31,9 @@ const TransactionController = () => {
 
   const getTransactionByPayment = async (req, res) => {
     try {
-      const payment = req.body.payment;
+      const payment = req.query.payment;
       if (!payment) {
-        return res.status(400).json("batchId not found");
+        return res.status(400).json("transaction not found");
       }
       const transaction = await TransactionService.getTransactionByPayment(payment);
       if (transaction.length === 0) {
