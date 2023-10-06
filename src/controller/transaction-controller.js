@@ -35,7 +35,9 @@ const TransactionController = () => {
       if (!payment) {
         return res.status(400).json("transaction not found");
       }
-      const transaction = await TransactionService.getTransactionByPayment(payment);
+      const transaction = await TransactionService.getTransactionByPayment(
+        payment
+      );
       if (transaction.length === 0) {
         return res.status(404).json("No transactions found");
       }
@@ -75,7 +77,7 @@ const TransactionController = () => {
       res.status(200).json(error);
     }
   };
-  
+
   const updateTransaction = async (req, res) => {
     try {
       const { id } = req.params;
@@ -90,6 +92,27 @@ const TransactionController = () => {
       res.status(200).json(error);
     }
   };
+
+  const updateTransactionByBatchId = async (req, res) => {
+    try {
+      const { batchId } = req.params;
+      const { payment, amountTendered, balance } = req.body;
+
+      const updatedTransactions =
+        await TransactionService.updateTransactionsByBatchId(
+          batchId,
+          payment,
+          amountTendered,
+          balance
+        );
+
+      res.json(updatedTransactions);
+    } catch (error) {
+      console.error("Error updating transactions:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+
   const deleteTransaction = async (req, res) => {
     try {
       const { id } = req.params;
@@ -107,6 +130,7 @@ const TransactionController = () => {
     getTransactionByClientById,
     getTransactionByPayment,
     updateTransaction,
+    updateTransactionByBatchId,
     deleteTransaction,
   };
 };

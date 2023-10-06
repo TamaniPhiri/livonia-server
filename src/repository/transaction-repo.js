@@ -107,6 +107,18 @@ const TransactionRepository = () => {
       },
     });
   };
+
+  const updateTransactionsByBatchId = async (batchId, payment, amountTendered, balance) => {
+    try {
+      const updatedTransactions = await Prisma.transactions.updateMany({
+        where: { batchId },
+        data: { payment, amountTendered, balance },
+      });
+      return updatedTransactions;
+    } catch (error) {
+      throw error;
+    }
+  };
   return {
     createTransaction,
     deleteTransaction,
@@ -115,6 +127,7 @@ const TransactionRepository = () => {
     getTransactionByClientId,
     getTransactionsByPayment,
     updateTransaction,
+    updateTransactionsByBatchId,
   };
 };
 

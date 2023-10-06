@@ -49,6 +49,9 @@ const TransactionService = () => {
     const transaction = await TransactionRepository.updateTransaction(id, data);
     return transaction;
   };
+  const updateTransactionsByBatchId = async (batchId, payment, amountTendered, balance) => {
+    return TransactionRepository.updateTransactionsByBatchId(batchId, payment, amountTendered, balance);
+  };
   const deleteTransaction = async (id) => {
     const transaction = await TransactionRepository.deleteTransaction(id);
     return transaction;
@@ -60,6 +63,7 @@ const TransactionService = () => {
     getTransactionByPayment,
     getTransactionByClient,
     updateTransaction,
+    updateTransactionsByBatchId,
     deleteTransaction,
   };
 };
