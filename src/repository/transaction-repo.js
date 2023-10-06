@@ -14,12 +14,12 @@ function generateRandomString(length) {
   return randomString;
 }
 
-let batchCounter = 1; // Initialize the batch counter
+let batchCounter = 1;
 
 // Function to generate a unique batchId for each batch
 function generateBatchId() {
-  const autoIncrementPart = batchCounter.toString().padStart(4, "0"); // Auto-incrementing part
-  const randomPart = generateRandomString(4); // Random part
+  const autoIncrementPart = batchCounter.toString().padStart(4, "0");
+  const randomPart = generateRandomString(4);
 
   const batchId = `${autoIncrementPart}-${randomPart}`;
   return batchId;
@@ -44,6 +44,9 @@ const TransactionRepository = () => {
           amount: data.amount,
           batchId,
           total: data.total,
+          payment: data.payment,
+          amountTendered: parseInt(data.amountTendered),
+          balance: parseInt(data.balance),
         },
       });
 
@@ -104,6 +107,42 @@ const TransactionRepository = () => {
       },
     });
   };
+
+  const updateTransactionsByBatchId = async (
+    batchId,
+    payment,
+    amountTendered
+  ) => {
+    try {
+      const transactions = await Prisma.transactions.findMany({
+        where: { batchId },
+      });
+
+      const updatedTransactions = await Promise.all(
+        transactions.map(async (transaction) => {
+          const { amountTendered: existingAmountTendered, balance } =
+            transaction;
+
+          const newAmountTendered =
+            parseFloat(existingAmountTendered) + parseFloat(amountTendered);
+          const newBalance = parseFloat(balance) - parseFloat(amountTendered);
+
+          return Prisma.transactions.update({
+            where: { id: transaction.id },
+            data: {
+              payment,
+              amountTendered: newAmountTendered,
+              balance: newBalance,
+            },
+          });
+        })
+      );
+
+      return updatedTransactions;
+    } catch (error) {
+      throw error;
+    }
+  };
   return {
     createTransaction,
     deleteTransaction,
@@ -112,6 +151,7 @@ const TransactionRepository = () => {
     getTransactionByClientId,
     getTransactionsByPayment,
     updateTransaction,
+    updateTransactionsByBatchId,
   };
 };
 
