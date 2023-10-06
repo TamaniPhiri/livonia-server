@@ -8,5 +8,6 @@ router.get('/batch',TransactionController.getTransaction);
 router.get('/:id',TransactionController.getTransactionByClientById);
 router.put('/:id',TransactionController.updateTransaction);
 router.delete('/:id',TransactionController.deleteTransaction);
+router.put('/update/:batchId', TransactionController.updateTransactionByBatchId);
 
 module.exports= router;

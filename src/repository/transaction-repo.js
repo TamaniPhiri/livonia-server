@@ -44,9 +44,9 @@ const TransactionRepository = () => {
           amount: data.amount,
           batchId,
           total: data.total,
-          payment:data.payment,
-          amountTendered:parseInt(data.amountTendered),
-          balance:parseInt(data.balance),
+          payment: data.payment,
+          amountTendered: parseInt(data.amountTendered),
+          balance: parseInt(data.balance),
         },
       });
 
@@ -108,12 +108,36 @@ const TransactionRepository = () => {
     });
   };
 
-  const updateTransactionsByBatchId = async (batchId, payment, amountTendered, balance) => {
+  const updateTransactionsByBatchId = async (
+    batchId,
+    payment,
+    amountTendered
+  ) => {
     try {
-      const updatedTransactions = await Prisma.transactions.updateMany({
+      const transactions = await Prisma.transactions.findMany({
         where: { batchId },
-        data: { payment, amountTendered, balance },
       });
+
+      const updatedTransactions = await Promise.all(
+        transactions.map(async (transaction) => {
+          const { amountTendered: existingAmountTendered, balance } =
+            transaction;
+
+          const newAmountTendered =
+            parseFloat(existingAmountTendered) + parseFloat(amountTendered);
+          const newBalance = parseFloat(balance) - parseFloat(amountTendered);
+
+          return Prisma.transactions.update({
+            where: { id: transaction.id },
+            data: {
+              payment,
+              amountTendered: newAmountTendered,
+              balance: newBalance,
+            },
+          });
+        })
+      );
+
       return updatedTransactions;
     } catch (error) {
       throw error;
