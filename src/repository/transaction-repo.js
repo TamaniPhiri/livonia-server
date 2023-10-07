@@ -47,6 +47,7 @@ const TransactionRepository = () => {
           payment: data.payment,
           amountTendered: parseInt(data.amountTendered),
           balance: parseInt(data.balance),
+          discount:parseInt(data.discount),
         },
       });
 
