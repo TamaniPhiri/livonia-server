@@ -47,11 +47,30 @@ const InventoryController = () => {
     try {
       const { id } = req.params;
       const data = req.body;
-      const updatedInventory = await InventoryService.updateInventory(id,data);
+      const updatedInventory = await InventoryService.updateInventory(id, data);
       res.status(200).json(updatedInventory);
     } catch (error) {
       console.log(error);
       res.status(400).json(error.message);
+    }
+  };
+
+  const updateInventoryById = async (req, res) => {
+    const { id } = req.params;
+    const { quantity } = req.body;
+    try {
+      const updatedInventory =
+        await InventoryService.updateInventoryById(id, { quantity });
+
+      if (updatedInventory) {
+        res.status(200).json(updatedInventory);
+      } else {
+        res
+          .status(404)
+          .json({ message: `Inventory item with ID ${id} not found.` });
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   };
   return {
@@ -60,6 +79,7 @@ const InventoryController = () => {
     createInventory,
     deleteInventory,
     updateInventory,
+    updateInventoryById,
   };
 };
 

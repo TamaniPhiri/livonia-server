@@ -6,10 +6,9 @@ async function updateProductQuantities(products) {
     for (const product of products) {
       const { productId, newQuantity } = product;
 
-      // Retrieve the current quantity from the Inventory table
       const currentInventory = await prisma.inventory.findUnique({
         where: { id: productId },
-        select: { quantity: true }, // Select only the 'quantity' field
+        select: { quantity: true },
       });
 
       if (!currentInventory) {
@@ -18,7 +17,6 @@ async function updateProductQuantities(products) {
 
       const updatedQuantity = currentInventory.quantity - newQuantity;
 
-      // Update the quantity in the Inventory table
       await prisma.inventory.update({
         where: { id: productId },
         data: { quantity: updatedQuantity },

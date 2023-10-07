@@ -24,8 +24,12 @@ const InventoryService = () => {
         const inventory = await InventoryRepository.updateInventory(id,data);
         return inventory;
     }
+    const updateInventoryById = async(id,data)=>{
+        const inventory = await InventoryRepository.updateInventoryById(id,data);
+        return inventory;
+    }
 
-    return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventory}
+    return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventory,updateInventoryById}
 }
 
 module.exports = InventoryService();
