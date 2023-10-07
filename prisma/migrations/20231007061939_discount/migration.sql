@@ -35,10 +35,16 @@ CREATE TABLE "Transactions" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "clientId" INTEGER,
-    "name" TEXT,
+    "product" TEXT,
     "brand" TEXT,
-    "quantity" TEXT,
+    "quantity" INTEGER,
     "amount" TEXT,
+    "batchId" TEXT,
+    "total" TEXT,
+    "payment" TEXT,
+    "amountTendered" INTEGER,
+    "balance" INTEGER,
+    "discount" INTEGER,
 
     CONSTRAINT "Transactions_pkey" PRIMARY KEY ("id")
 );
@@ -51,7 +57,7 @@ CREATE TABLE "Inventory" (
     "name" TEXT,
     "brand" TEXT,
     "size" TEXT,
-    "quantity" TEXT,
+    "quantity" INTEGER,
     "price" TEXT,
 
     CONSTRAINT "Inventory_pkey" PRIMARY KEY ("id")
