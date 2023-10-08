@@ -57,10 +57,10 @@ const InventoryController = () => {
 
   const updateInventoryById = async (req, res) => {
     const { id } = req.params;
-    const { quantity,name,brand } = req.body;
+    const { quantity,brand } = req.body;
     try {
       const updatedInventory =
-        await InventoryService.updateInventoryById(id, { quantity,name,brand });
+        await InventoryService.updateInventoryById(id, { quantity,brand });
 
       if (updatedInventory) {
         res.status(200).json(updatedInventory);
