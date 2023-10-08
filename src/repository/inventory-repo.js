@@ -43,6 +43,8 @@ const InventoryRepository = () => {
       },
       data: {
         quantity: newQuantity,
+        name:data.name,
+        brand:data.brand,
       },
     });
   };
