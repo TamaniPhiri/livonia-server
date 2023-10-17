@@ -54,6 +54,17 @@ const InventoryController = () => {
       res.status(400).json(error.message);
     }
   };
+  const updateInventoryBrand = async(req,res)=>{
+    const {id}=req.params;
+    const data=req.body;
+    try {
+      const updatedInventory = await InventoryService.updateInventoryBrand(id,data);
+      res.status(200).json(updateInventory);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error.message);
+    }
+  }
 
   const updateInventoryById = async (req, res) => {
     const { id } = req.params;
@@ -80,6 +91,7 @@ const InventoryController = () => {
     deleteInventory,
     updateInventory,
     updateInventoryById,
+    updateInventoryBrand,
   };
 };
 
