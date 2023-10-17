@@ -59,7 +59,7 @@ const InventoryController = () => {
     const data=req.body;
     try {
       const updatedInventory = await InventoryService.updateInventoryBrand(id,data);
-      res.status(200).json(updateInventory);
+      res.status(200).json(updatedInventory);
     } catch (error) {
       console.log(error);
       res.status(400).json(error.message);
