@@ -47,6 +47,25 @@ const InventoryRepository = () => {
     });
   };
 
+  const updateInventoryBrand = async (id, data) => {
+    const currentInventory = await Prisma.inventory.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    if (!currentInventory) {
+      throw new Error(`Inventory item with ID ${id} not found.`);
+    }
+
+    return Prisma.inventory.update({
+      where: {
+        id: parseInt(id),
+      },
+      data,
+    });
+  };
+
   const updateInventory = async (ids, data) => {
     const idArray = Array.isArray(ids) ? ids : [ids];
 
@@ -93,6 +112,7 @@ const InventoryRepository = () => {
     getInventoryByName,
     updateInventoryById,
     updateInventory,
+    updateInventoryBrand,
     deleteInventory,
   };
 };

@@ -24,12 +24,16 @@ const InventoryService = () => {
         const inventory = await InventoryRepository.updateInventory(id,data);
         return inventory;
     }
+    const updateInventoryBrand = async(id,data)=>{
+        const inventory = await InventoryRepository.updateInventoryBrand(id,data);
+        return inventory;
+    }
     const updateInventoryById = async(id,data)=>{
         const inventory = await InventoryRepository.updateInventoryById(id,data);
         return inventory;
     }
 
-    return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventory,updateInventoryById}
+    return {getAllInventory,createInventory,getInventoryByName,deleteInventory,updateInventoryBrand,updateInventory,updateInventoryById}
 }
 
 module.exports = InventoryService();
